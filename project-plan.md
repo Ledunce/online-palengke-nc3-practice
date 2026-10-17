@@ -18,11 +18,11 @@ Submit an Order Request
 
 Iterative
 
-It needs this in order for the app to continually improve. 
+The application seems to be continuous. We can start first with the core functionalities and requirements in first and second version. 
 
 
 
-The seller will review it ever Friday of the week 
+The seller will review it ever Friday of the week.
 
 
 
@@ -34,7 +34,7 @@ Seller's responsibility: Provide product names, prices, description, images, bus
 
 Equipment: Laptop
 
-Software: VSCode
+Software: VSCode, Browser
 
 
 
@@ -42,7 +42,13 @@ Software: VSCode
 
 The application needs it's core functionality working already. 
 
-On the first review I will have the Browse product, Search for Items, Add Items to Cart, Submit an order request. 
+On the first review I will have the Browse product, Search for Items, Add Items to Cart, Submit an order request if I have enough time to finish it. However,
+
+being conservative the client needs to see that their products are seen online first so on the first review I will give them Browsing and Searching product. 
+
+On the second review I can give them the Add Items and Submit Order. This makes sense with my methodology. 
+
+&#x20;
 
 I will put a basic layout first for the client to have their feedback regarding the layout. 
 
