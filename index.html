@@ -64,6 +64,33 @@
             <p id="create-status" role="status"></p>
 
 
+            <form id="update-form" class="product-card">
+                <h2>Update a product's price</h2>
+
+                <p>
+                    <label for="update-id">Product ID</label>
+                    <input
+                    id="update-id"
+                    type="number"
+                    min = "1"
+                    step = "1"
+                    required>
+                </p>
+
+                <p>
+                    <label for="update-price">New Price</label>
+                    <input
+                    id="update-price"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    required>
+                </p>
+
+                <button id="update-product" type="submit">Update Price</button>
+            </form>
+            <p id="update-status" role="status"></p>
+
             <!--loading products button-->
 
             <button id="load-products" type="button">
