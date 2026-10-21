@@ -10,12 +10,66 @@
     <body>
         <main>
             <h1>Online Store</h1>
+
+            <!--adding products-->
+
+            <form id="product-form" class="product-card">
+                <h2>Add a product</h2>
+                <p>
+                    <label for="product-title">Product name</label>
+                    <input
+                      id="product-title"
+                      type="text"
+                      required>
+                </p>
+
+                <p>
+                    <label for="product-price">Price</label>
+                    <input 
+                    id = "product-price"
+                    type="number"
+                    min = "0"
+                    step="0.01"
+                    required>
+                
+                </p>
+
+                  <p>
+                    <label for="product-description">description</label>
+                    <input 
+                    id = "product-description"
+                    type="text"
+                    required>
+                
+                </p>
+
+                 <p>
+                    <label for="product-stock">stock</label>
+                    <input 
+                    id = "product-stock"
+                    type="number"
+                    min = "0"
+                    step="1"
+                    required>
+                
+                </p>
+
+
+                <button id="create-product" type="submit">
+                    Add Product
+                </button>
+
+            </form>
+
+            <p id="create-status" role="status"></p>
+
+
+            <!--loading products button-->
+
             <button id="load-products" type="button">
                 Load products
             </button>
-            <p id="status" role = "status">
-
-            </p>
+            <p id="status" role = "status"></p>
 
             <section 
                 id = "product-list"
