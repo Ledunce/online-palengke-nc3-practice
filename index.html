@@ -63,7 +63,7 @@
 
             <p id="create-status" role="status"></p>
 
-
+            <!--Updating products -->
             <form id="update-form" class="product-card">
                 <h2>Update a product's price and description</h2>
 
@@ -108,6 +108,28 @@
                 <button id="update-product" type="submit">Update Price</button>
             </form>
             <p id="update-status" role="status"></p>
+
+
+            <!--Deleting-->
+            <form id="delete-form" class="product-card">
+                <h2>Delete a PRoduct</h2>
+
+                <p>
+                    <label for="delete-id">Product  ID</label>
+                    <input
+                    id="delete-id"
+                    type="number"
+                    min="1"
+                    step="1"
+                    required>
+                </p>
+
+                <button id="delete-product" type="submit">
+                    Delete Product
+                </button>
+            </form>
+
+            <p id="delete-status" role="status"></p>
 
             <!--loading products button-->
 

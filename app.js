@@ -18,6 +18,74 @@ const updateStatus = document.querySelector("#update-status");
 const updateDesc = document.querySelector("#update-desc");
 const updateStock = document.querySelector("#update-stock");
 
+const deleteForm = document.querySelector("#delete-form");
+const deleteIdInput = document.querySelector("#delete-id");
+const deleteButton = document.querySelector("#delete-product");
+const deleteStatus = document.querySelector("#delete-status");
+
+//delete function
+async function deleteProduct(event){
+    event.preventDefault();
+
+    const productId = deleteIdInput.valueAsNumber;
+
+    if (!Number.isSafeInteger(productId) || productId < 1){
+        deleteStatus.textContent = 
+        "Enter a positive whole-number product ID.";
+        return;
+    }
+
+    const confirmed = window.confirm("Delete product ID " + productId + " ? ");
+    
+    if (!confirmed) {
+        deleteStatus.textContent = "Deletion Cancelled.";
+        return;
+    }
+
+    deleteButton.disabled = true;
+    deleteStatus.textContent = "Deleting product...";
+
+    try {
+        const response = await fetch (
+            "https://dummyjson.com/products/" + productId,
+            {
+                method: "DELETE"
+            }
+        );
+
+        if (!response.ok){
+            throw new Error("Request Failed: " + response.status);
+
+        }
+
+        const deletedProduct = await response.json();
+
+        console.log("Deleted Product:", deletedProduct);
+
+        if (deletedProduct.isDeleted !== true){
+            throw new Error("Api did not ocnfirm deletion");
+
+        }
+
+        const card = productList.querySelector('[data-product-id="' + deletedProduct.id + '"]');
+
+        if (card){
+            card.remove();
+        }
+
+        deleteStatus.textContent = "API confirmed deletion of " + deletedProduct.title + ". This is a simulated deletion";
+
+        deleteForm.reset();
+    } catch (error){
+        deleteStatus.textContent = "Could not delete product. check the id and try again."
+
+        console.error(error);
+    } finally {
+        deleteButton.disabled = false;
+    }
+}
+
+deleteForm.addEventListener("submit", deleteProduct);
 
 //new product
 async function createProduct(event){
