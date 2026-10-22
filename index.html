@@ -65,7 +65,7 @@
 
 
             <form id="update-form" class="product-card">
-                <h2>Update a product's price</h2>
+                <h2>Update a product's price and description</h2>
 
                 <p>
                     <label for="update-id">Product ID</label>
@@ -84,6 +84,24 @@
                     type="number"
                     min="0"
                     step="0.01"
+                    required>
+                </p>
+
+                <p>
+                    <label for="update-desc">New Description</label>
+                    <input 
+                    id="update-desc"
+                    type="text"
+                    required>
+                </p>
+
+                <p>
+                    <label for="update-stock">New Stock</label>
+                    <input
+                    id="update-stock"
+                    type="number"
+                    min="0"
+                    step="1"
                     required>
                 </p>
 

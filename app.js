@@ -15,6 +15,8 @@ const updateIdInput = document.querySelector("#update-id");
 const updatePriceInput = document.querySelector("#update-price");
 const updateButton = document.querySelector("#update-product");
 const updateStatus = document.querySelector("#update-status");
+const updateDesc = document.querySelector("#update-desc");
+const updateStock = document.querySelector("#update-stock");
 
 
 //new product
@@ -75,9 +77,11 @@ async function createProduct(event){
         productID.textContent = "product id: " + createdProduct.id;
 
         const description = document.createElement("p");
+        description.className = "product-description"
         description.textContent = "Description " + createdProduct.description;
 
         const stock = document.createElement("h2");
+        stock.className = "product-stock"
         stock.textContent = "stock: " + createdProduct.stock;
 
         card.append(name,price,productID,description,stock);
@@ -103,7 +107,6 @@ productForm.addEventListener("submit", createProduct);
 
 
 //to load products
-
 async function loadProducts() {
     loadButton.disabled = true;
     statusMessage.textContent = "Loading products";
@@ -123,7 +126,7 @@ try {
     for (const product of data.products){
         const card = document.createElement("article");
         card.className = "product-card"; 
-        card.dataset.productID = product.id;
+        card.dataset.productId = product.id;
 
         const name =  document.createElement("h2");
         name.textContent = product.title; 
@@ -132,13 +135,15 @@ try {
         productID.textContent  = "Product ID: " + product.id;
 
         const price = document.createElement("p");
-        price.className = "product-card"
+        price.className = "product-price"
         price.textContent = "Sample price:" + product.price;
 
         const description = document.createElement("p");
+        description.className = "product-description";
         description.textContent = "description: " + product.description;
 
         const stock = document.createElement("h3");
+        stock.className = "product-stock";
         stock.textContent = product.stock;
 
         card.append(name,price,productID,description,stock);
@@ -164,14 +169,18 @@ async function updateProduct(event){
 
     const productId = updateIdInput.valueAsNumber;
     const newPrice = updatePriceInput.valueAsNumber;
-
+    const newDesc = updateDesc.value.trim();
+    const newStock = updateStock.valueAsNumber;
+    
     if (
         !Number.isSafeInteger(productId) ||
         productId < 1 ||
         !Number.isFinite(newPrice) ||
-        newPrice < 0
+        newPrice < 0 || newDesc === "" ||   !Number.isInteger(newStock) ||
+         newStock < 0
     ) {
-        updateStatus.textContent = "enter a positive whole-number ID and a nonnegative price"
+        updateStatus.textContent = "Enter a positive whole-number ID, a nonnegative price, " +
+        "a description, and whole-number stock of zero or more.";
         return;
     }
 
@@ -188,7 +197,9 @@ async function updateProduct(event){
                 },
 
                 body: JSON.stringify({
-                    price: newPrice
+                    price: newPrice,
+                    description: newDesc,
+                    stock: newStock
                 })
             }
         );
@@ -207,14 +218,26 @@ async function updateProduct(event){
 
         if (card) {
             const price = card.querySelector(".product-price");
+            const description = card.querySelector(".product-description");
+            const stock = card.querySelector(".product-stock");
 
             if (price) {
                 price.textContent = "Sample price:" + updatedProduct.price;
             }
+            if (description) {
+                description.textContent = "Sample price:" + updatedProduct.description;
+            }
+               if (stock) {
+                stock.textContent = "Sample price:" + updatedProduct.stock;
+            }
         }
         
         updateStatus.textContent = 
-        "API accepted price" + updatedProduct.price + "for" + updatedProduct.title +
+        "API accepted price " +
+         updatedProduct.price + 
+         " for " + updatedProduct.title + 
+         " with a description " + updatedProduct.description + 
+         " Stock " + updatedProduct.stock + 
          ". This is a simulated update";
 
         updateForm.reset();
